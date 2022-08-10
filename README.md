@@ -7,3 +7,11 @@ Ideally, I'd like the window of complaints to be uniform for all of these permit
 
 # Subway Entrances
 I decided to look at numbers of entrances within tenth, half, one, and 2.5 mile radii of the permit. I wanted to find the closest entrance, along with half mile, but that would be very calculation intensive and take too long to run.
+
+# Distances to Parks
+### Turning Distance Calcuation into Miles
+This distance is in degrees. 1 degree latitude ~= to 69 miles. 1 degree longitude ~= 40 miles at NYC's latitude.
+
+I'm going to treat a degree as equal to 54.5 miles for the purpose of these distance calculations. This means that my calculations of distance could be off by as much as 36.25%, if the change in position is actually only a change in longitude, latitude staying the same (in other words, 1 degree change actually equaling 40 miles). For a change only in latitude (longitude staying the same), the error rate is 21%.
+
+Unfortunately, given the time line I'm on, I'm going to accept this level of imprecision. 
