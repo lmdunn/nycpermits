@@ -15,3 +15,11 @@ This distance is in degrees. 1 degree latitude ~= to 69 miles. 1 degree longitud
 I'm going to treat a degree as equal to 54.5 miles for the purpose of these distance calculations. This means that my calculations of distance could be off by as much as 36.25%, if the change in position is actually only a change in longitude, latitude staying the same (in other words, 1 degree change actually equaling 40 miles). For a change only in latitude (longitude staying the same), the error rate is 21%.
 
 Unfortunately, given the time line I'm on, I'm going to accept this level of imprecision. 
+
+# Places for refinement or deeper analysis
+note on distance from parks, above
+eda -- looking at more park metrics, number within distance(see notes in eda)
+random points -- I used an even distribution by borough. Would have been better to make the distribution proportional to area of borough. It would have been more precise.
+use residential zoning for analysis, not (non-park) city area. _This is a positive sign, but warrants more research before drawing a conclusion. Ideally, one would use zoning data and eliminate random points that fall outside residential zoning. That would indicate whether new housing is being randomly distributed in residential zones or if the distribution leans towards or away from proximity to parks._
+
+It might be worth looking at the proportion of the city encompassed by historic districts to get a more precise sense of the scale at which the districts are diminishing potential housing stock. That said, the rate at which random points fall in historic districts, at least by borough, gives us a good approzimation.
