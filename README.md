@@ -23,3 +23,5 @@ random points -- I used an even distribution by borough. Would have been better 
 use residential zoning for analysis, not (non-park) city area. _This is a positive sign, but warrants more research before drawing a conclusion. Ideally, one would use zoning data and eliminate random points that fall outside residential zoning. That would indicate whether new housing is being randomly distributed in residential zones or if the distribution leans towards or away from proximity to parks._
 
 It might be worth looking at the proportion of the city encompassed by historic districts to get a more precise sense of the scale at which the districts are diminishing potential housing stock. That said, the rate at which random points fall in historic districts, at least by borough, gives us a good approzimation.
+
+Looking at commuting times to central biz distances would be really interesting. Particularly relevant for SI -- is it actually farther?
