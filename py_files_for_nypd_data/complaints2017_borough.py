@@ -6,20 +6,23 @@ import time
 #I'm naming this by borough without year in order to
 #make it as easy as possible to duplicate this code for later years
 
-permits_man = pd.read_csv('boro_data/permits_man.csv')
-nypd_man = pd.read_csv('2019/nypd2019_man.csv') #CHANGE YEAR
+#file paths are written for folders uploaded to a remote server and will need to be changed
+#if this is run on the computer
 
-permits_bx = pd.read_csv('boro_data/permits_bx.csv')
-nypd_bx = pd.read_csv('2019/nypd2019_bx.csv') #CHANGE YEAR
+permits_man = pd.read_csv('data_permits_by_boro/permits_man.csv')
+nypd_man = pd.read_csv('data_nypd_by_year/2017/nypd2017_man.csv') #CHANGE YEAR
 
-permits_si = pd.read_csv('boro_data/permits_si.csv')
-nypd_si = pd.read_csv('2019/nypd2019_si.csv') #CHANGE YEAR
+permits_bx = pd.read_csv('data_permits_by_boro/permits_bx.csv')
+nypd_bx = pd.read_csv('data_nypd_by_year/2017/nypd2017_bx.csv') #CHANGE YEAR
 
-permits_qn = pd.read_csv('boro_data/permits_qn.csv')
-nypd_qn = pd.read_csv('2019/nypd2019_qn.csv') #CHANGE YEAR
+permits_si = pd.read_csv('data_permits_by_boro/permits_si.csv')
+nypd_si = pd.read_csv('data_nypd_by_year/2017/nypd2017_si.csv') #CHANGE YEAR
 
-permits_bk = pd.read_csv('boro_data/permits_bk.csv')
-nypd_bk = pd.read_csv('2019/nypd2019_bk.csv') #CHANGE YEAR
+permits_qn = pd.read_csv('data_permits_by_boro/permits_qn.csv')
+nypd_qn = pd.read_csv('data_nypd_by_year/2017/nypd2017_qn.csv') #CHANGE YEAR
+
+permits_bk = pd.read_csv('data_permits_by_boro/permits_bk.csv')
+nypd_bk = pd.read_csv('data_nypd_by_year/2017/nypd2017_bk.csv') #CHANGE YEAR
 
 def get_distance(point1, point2):
     R = 4182 #miles
@@ -36,11 +39,17 @@ def get_distance(point1, point2):
     distance = R * c
     return distance
 
+# note: the latitude and longitude I'm using are in decimals NOT minutes, so I do the same here
+# these are set at a tenth of a mile to start, with 1 degree late = 69 miles and 1 degree longitude = 40 miles
+# max_delt_lat = 1/690
+# max_delt_long = 1/400
+# to make the code run a little faster I hard coded these variables
+
 
 # MANHATTAN (MAN)
 t0 = time.time()
 print('Processing Manhattan')
-permits_man.loc[0, 'complaints2019_20'] = 0 #CHANGE YEAR
+permits_man.loc[0, 'complaints2017_18'] = 0 #CHANGE YEAR
 for i in permits_man.index:
     t1 = time.time()
     lat = permits_man.loc[i, 'latitude']
@@ -55,10 +64,10 @@ for i in permits_man.index:
             distance = get_distance(point1, point2)
             if distance <= .1:
                 complaint_count += 1
-    permits_man.loc[i, 'complaints2019_20'] = complaint_count #CHANGE YEAR
+    permits_man.loc[i, 'complaints2017_18'] = complaint_count #CHANGE YEAR
     print(f"Manhattan permit {i} finished at {time.time()}, after {time.time()-t1}, {time.time()-t0} since the start of the Manhattan code.")
 
-permits_man.to_csv('permits_complaints2019_man.csv', index = False) #CHANGE YEAR
+permits_man.to_csv('permits_complaints2017_man.csv', index = False) #CHANGE YEAR
 
 print('')
 print("Time to run Manhattan:", time.time()-t0) #
@@ -67,7 +76,7 @@ print("Time to run Manhattan:", time.time()-t0) #
 # THE BRONX (BX)
 t0 = time.time()
 print('Processing the Bronx')
-permits_bx.loc[0, 'complaints2019_20'] = 0 #CHANGE YEAR
+permits_bx.loc[0, 'complaints2017_18'] = 0 #CHANGE YEAR
 for i in permits_bx.index:
     t1 = time.time()
     lat = permits_bx.loc[i, 'latitude']
@@ -82,10 +91,10 @@ for i in permits_bx.index:
             distance = get_distance(point1, point2)
             if distance <= .1:
                 complaint_count += 1
-    permits_bx.loc[i, 'complaints2019_20'] = complaint_count #CHANGE YEAR
+    permits_bx.loc[i, 'complaints2017_18'] = complaint_count #CHANGE YEAR
     print(f"Bronx permit {i} finished at {time.time()}, after {time.time()-t1}, {time.time()-t0} since the start of the Bronx code.")
 
-permits_bx.to_csv('permits_complaints2019_bx.csv', index = False) #CHANGE YEAR
+permits_bx.to_csv('permits_complaints2017_bx.csv', index = False) #CHANGE YEAR
 
 print('')
 print("Time to run the Bronx:", time.time()-t0) #CHANGE BOROUGH
@@ -94,7 +103,7 @@ print("Time to run the Bronx:", time.time()-t0) #CHANGE BOROUGH
 # STATEN ISLAND (SI)
 t0 = time.time()
 print('Processing Staten Island')
-permits_si.loc[0, 'complaints2019_20'] = 0 #CHANGE YEAR
+permits_si.loc[0, 'complaints2017_18'] = 0 #CHANGE YEAR
 for i in permits_si.index:
     t1 = time.time()
     lat = permits_si.loc[i, 'latitude']
@@ -109,10 +118,10 @@ for i in permits_si.index:
             distance = get_distance(point1, point2)
             if distance <= .1:
                 complaint_count += 1
-    permits_si.loc[i, 'complaints2019_20'] = complaint_count #CHANGE YEAR
+    permits_si.loc[i, 'complaints2017_18'] = complaint_count #CHANGE YEAR
     print(f"Staten Island permit {i} finished at {time.time()}, after {time.time()-t1}, {time.time()-t0} since the start of the Staten Island code.")
 
-permits_si.to_csv('permits_complaints2019_si.csv', index = False) #CHANGE YEAR
+permits_si.to_csv('permits_complaints2017_si.csv', index = False) #CHANGE YEAR
 
 print('')
 print("Time to run Staten Island:", time.time()-t0)
@@ -121,7 +130,7 @@ print("Time to run Staten Island:", time.time()-t0)
 # QUEENS (QN)
 t0 = time.time()
 print('Processing Queens')
-permits_qn.loc[0, 'complaints2019_20'] = 0 #CHANGE YEAR
+permits_qn.loc[0, 'complaints2017_18'] = 0 #CHANGE YEAR
 for i in permits_qn.index:
     t1 = time.time()
     lat = permits_qn.loc[i, 'latitude']
@@ -136,10 +145,10 @@ for i in permits_qn.index:
             distance = get_distance(point1, point2)
             if distance <= .1:
                 complaint_count += 1
-    permits_qn.loc[i, 'complaints2019_20'] = complaint_count #CHANGE YEAR
+    permits_qn.loc[i, 'complaints2017_18'] = complaint_count #CHANGE YEAR
     print(f"Queens permit {i} finished at {time.time()}, after {time.time()-t1}, {time.time()-t0} since the start of the Queens code.")
 
-permits_qn.to_csv('permits_complaints2019_qn.csv', index = False) #CHANGE YEAR
+permits_qn.to_csv('permits_complaints2017_qn.csv', index = False) #CHANGE YEAR
 
 print('')
 print("Time to run Queens:", time.time()-t0)
@@ -148,7 +157,7 @@ print("Time to run Queens:", time.time()-t0)
 # BROOKLYN (BK)
 t0 = time.time()
 print('Processing Brooklyn')
-permits_bk.loc[0, 'complaints2019_20'] = 0 #CHANGE YEAR
+permits_bk.loc[0, 'complaints2017_18'] = 0 #CHANGE YEAR
 for i in permits_bk.index:
     t1 = time.time()
     lat = permits_bk.loc[i, 'latitude']
@@ -163,11 +172,11 @@ for i in permits_bk.index:
             distance = get_distance(point1, point2)
             if distance <= .1:
                 complaint_count += 1
-    permits_bk.loc[i, 'complaints2019_20'] = complaint_count #CHANGE YEAR
+    permits_bk.loc[i, 'complaints2017_18'] = complaint_count #CHANGE YEAR
     print(f"Brooklyn permit {i} finished at {time.time()}, after {time.time()-t1}, {time.time()-t0} since the start of the Brooklyn code.")
 
 
-permits_bk.to_csv('permits_complaints2019_bk.csv', index = False) #CHANGE YEAR
+permits_bk.to_csv('permits_complaints2017_bk.csv', index = False) #CHANGE YEAR
 
 print('')
 print("Time to run Brooklyn:", time.time()-t0)

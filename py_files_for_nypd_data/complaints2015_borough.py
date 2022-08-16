@@ -6,20 +6,23 @@ import time
 #I'm naming this by borough without year in order to
 #make it as easy as possible to duplicate this code for later years
 
-permits_man = pd.read_csv('boro_data/permits_man.csv')
-nypd_man = pd.read_csv('2015/nypd2015_man.csv') #CHANGE YEAR
+#file paths are written for folders uploaded to a remote server and will need to be changed
+#if this is run on the computer
 
-permits_bx = pd.read_csv('boro_data/permits_bx.csv')
-nypd_bx = pd.read_csv('2015/nypd2015_bx.csv') #CHANGE YEAR
+permits_man = pd.read_csv('data_permits_by_boro/permits_man.csv')
+nypd_man = pd.read_csv('data_nypd_by_year/2015/nypd2015_man.csv') #CHANGE YEAR
 
-permits_si = pd.read_csv('boro_data/permits_si.csv')
-nypd_si = pd.read_csv('2015/nypd2015_si.csv') #CHANGE YEAR
+permits_bx = pd.read_csv('data_permits_by_boro/permits_bx.csv')
+nypd_bx = pd.read_csv('data_nypd_by_year/2015/nypd2015_bx.csv') #CHANGE YEAR
 
-permits_qn = pd.read_csv('boro_data/permits_qn.csv')
-nypd_qn = pd.read_csv('2015/nypd2015_qn.csv') #CHANGE YEAR
+permits_si = pd.read_csv('data_permits_by_boro/permits_si.csv')
+nypd_si = pd.read_csv('data_nypd_by_year/2015/nypd2015_si.csv') #CHANGE YEAR
 
-permits_bk = pd.read_csv('boro_data/permits_bk.csv')
-nypd_bk = pd.read_csv('2015/nypd2015_bk.csv') #CHANGE YEAR
+permits_qn = pd.read_csv('data_permits_by_boro/permits_qn.csv')
+nypd_qn = pd.read_csv('data_nypd_by_year/2015/nypd2015_qn.csv') #CHANGE YEAR
+
+permits_bk = pd.read_csv('data_permits_by_boro/permits_bk.csv')
+nypd_bk = pd.read_csv('data_nypd_by_year/2015/nypd2015_bk.csv') #CHANGE YEAR
 
 def get_distance(point1, point2):
     R = 4182 #miles
