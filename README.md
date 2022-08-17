@@ -15,7 +15,7 @@ This analysis used the following data sets, all but one to be found at [NYC Open
 - [map of criminal complaints](https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i)
 - [map of city parks](https://nycopendata.socrata.com/Recreation/Parks-Properties/enfh-gkve)
 - [2020 Census tracts boundaries](https://data.cityofnewyork.us/City-Government/2020-Census-Tracts-Mapped/weqx-t5xr)
-- [2020 Census data](https://www1.nyc.gov/site/planning/planning-level/nyc-population/2020-census.page##2020-census-results) (this is from the NYC Dept. of City Planning; [this link](https://www1.nyc.gov/assets/planning/download/office/planning-level/nyc-population/census2020/nyc_decennialcensusdata_2010_2020_change.xlsx?r=3) autodownloads the data)
+- [2020 Census data](https://www1.nyc.gov/site/planning/planning-level/nyc-population/2020-census.page##2020-census-results) (this is from the NYC Dept. of City Planning. [This link](https://www1.nyc.gov/assets/planning/download/office/planning-level/nyc-population/census2020/nyc_decennialcensusdata_2010_2020_change.xlsx?r=3) autodownloads the data)
 
 Data from these sets were combined into the final data set:
 
@@ -169,12 +169,14 @@ One, because there's a lead time to start construction, the analysis examined cr
 
 Two, per the Open Data NYC site, crimes occurring anywhere other than an intersection are geo-located to the middle of the block. 
 
-# Subway Entrances
-I decided to look at numbers of entrances within tenth, half, one, and 2.5 mile radii of the permit. I wanted to find the closest entrance, along with half mile, but that would be very calculation intensive and take too long to run.
-
 # Modeling
+At the time of analysis, there was no data on applications to build new buildings that were denied nor on how long the approval process took for the approved buildings. This data would have opened up many additional potential models to test.
 
+Absent that data, DBSCAN was used to see if useful clusters would appear. These efforts included trying to bring random points into the data to see if any clusters of random points would coalesce, which would suggest they were somehow different than the permitted data. A number of different feature and parameter combinations were attempted, but none of them were successful at distinguishing any random point clusters.
 
+Ultimately, finding data on applications that were denied (in the step before permitting) would be extremely useful. Otherwise, because of computational/time limitations, only 105 random points were generated to match the permit data (identifying the number of complaints close by was extremely intensive), so it's possible more random points would generate more useful results. Particularly if most sites are ultimately permittable, it would be perfectly plausible that such a small sample would fail to provide a cluster of non-permittable locations. Another possibility would be to write code to "train" a model on DBSCAN, then test each random point using the same parameters to see if it fit into an existing cluster or not. It's possible that training the model with the random points caused enough of a difference in the shape of the clusters that points that would otherwise be distinguishable from the former clusters are not distinguishable from the latter.
+
+It seems more likely that either these features aren't sufficient to model likely permittable sites, that most sites are permittable the question being how long the process will take, or that its necessary to have examples of sites that have been denied approval to be able to adequately train a model to distinguish between them.
 
 # Conclusions
 - It would be advisable for the city to examine why development is not happening inversely proportionally to density and in the absence of good reasons for that, find ways to support more development in less dense boroughs.
@@ -192,3 +194,8 @@ This analysis, as with most, has several points at which it could be refined or 
 - greater precision in closest park distance, as noted above.
 - examining whether the number of parks within given radii (.1, .5, 1, 2.5 miles) reveals anything of value
 - finding data on commuting times to central business distances from different parts of the boroughs could potentially add an interesting dimension to this analysis. For example, how long is the commute from different parts of Staten Island (thought of as being farther away but also less densely developed) into Manhattan and how does it compare to those of the other boroughs?
+
+# Additional Resources
+[The DOB Glossary](https://www1.nyc.gov/site/buildings/dob/acronym-glossary.page) is a handy reference.
+
+[One of several Fontan Architects articles](https://fontanarchitecture.com/building-a-new-home-in-nyc/). This one explains that the architect gets Approval before the Contractor(s) get permits. [This site](https://www.ny-engineers.com/agencies/dob-approval-and-design) describes a similar process.
